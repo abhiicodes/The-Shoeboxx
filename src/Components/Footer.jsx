@@ -1,8 +1,10 @@
 import React from 'react'
 
+
+import { Stack } from '@mui/material';
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <Stack>Footer</Stack>
   )
 }
 

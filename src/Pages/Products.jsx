@@ -1,8 +1,15 @@
 import React from 'react'
+import { Stack } from '@mui/material';
 
 const Products = () => {
   return (
-    <div>Products</div>
+    <Stack>
+
+    
+
+
+
+    </Stack>
   )
 }
 

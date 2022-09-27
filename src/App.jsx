@@ -1,19 +1,21 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+
 import Navbar from './Components/Navbar'
 import AllRoutes from './Routes/AllRoutes'
 import Footer from './Components/Footer'
+import { Stack } from '@mui/material';
+import CustomButton from './Components/CustomButton';
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
-    <div>
+    <Stack>
      <Navbar/>
      <AllRoutes/>
      <Footer/>
-    </div>
+    
+    </Stack>
   )
 }
 

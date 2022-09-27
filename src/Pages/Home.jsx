@@ -1,10 +1,10 @@
 import React from 'react'
 import { Stack } from '@mui/material';
 
-const Navbar = () => {
+const Home = () => {
   return (
-    <Stack>Navbar</Stack>
+    <Stack>Home</Stack>
   )
 }
 
-export default Navbar
+export default Home
