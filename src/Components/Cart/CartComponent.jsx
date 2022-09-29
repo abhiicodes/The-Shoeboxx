@@ -11,8 +11,9 @@ import * as React from 'react'
 import { CartItem } from './CartItem'
 import { CartOrderSummary } from './CartOrderSummary'
 // import { cartData } from './_data'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import store from './../../Redux/store';
+import { handleQuantity } from '../../Redux/CartState/action';
 
 
 
@@ -20,6 +21,12 @@ import store from './../../Redux/store';
 export const CartComponent = () => {
 
 const cartData = useSelector((store)=>store.cartReducer.cart)
+const dispatch = useDispatch()
+
+const onChangeQuantity=(val,id)=>{
+ dispatch(handleQuantity(id,val))
+
+}
 
   return (<Box
     maxW={{
@@ -64,7 +71,7 @@ const cartData = useSelector((store)=>store.cartReducer.cart)
 
         <Stack spacing="6">
           {cartData.map((item) => (
-            <CartItem key={item.id} {...item} />
+            <CartItem key={item.id} onChangeQuantity={onChangeQuantity} {...item} />
           ))}
         </Stack>
       </Stack>

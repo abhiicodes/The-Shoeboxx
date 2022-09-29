@@ -1,9 +1,12 @@
 export const ADD_TO_CART = "ADD_TO_CART";
 export const QUANTITY = "QUANTITY"
-export const handleQuantity = (el,val)=>{
-return { type:QUANTITY, payload:{el:el,val:val}}
+export const DELETE ="DELETE"
+export const handleQuantity = (id,val)=>{
+return { type:QUANTITY, payload:{id:id,val:val}}
 }
-
+export const deleteFromCart = (id)=>{
+    return { type:DELETE, payload:id}
+    }
 
 export const addItemToCart = (el)=>{
 return {

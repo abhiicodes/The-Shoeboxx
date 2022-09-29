@@ -1,7 +1,22 @@
-import { CloseButton, Flex, Link, Select, useColorModeValue } from '@chakra-ui/react'
+import { Box, CloseButton, Flex, Link, Select, useColorModeValue } from '@chakra-ui/react'
 import * as React from 'react'
 import { PriceTag } from './PriceTag'
 import { CartProductMeta } from './CartProductMeta'
+
+import { useSelector, useDispatch } from 'react-redux';
+import store from './../../Redux/store';
+import { handleQuantity } from '../../Redux/CartState/action'
+
+import { deleteFromCart } from './../../Redux/CartState/action';
+
+
+
+  import {AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+} from '@chakra-ui/react'
 
 const QuantitySelect = (props) => {
   return (
@@ -20,16 +35,29 @@ const QuantitySelect = (props) => {
 }
 
 export const CartItem = (props) => {
+
+  const cartData = useSelector((store)=>store.cartReducer.cart)
+  const dispatch = useDispatch()
+  
+  const onChangeQuantity=(val,id)=>{
+   dispatch(handleQuantity(id,val))
+  
+  }
+  const onClickDelete=(id)=>{
+    dispatch(deleteFromCart(id))
+  }
+
+
   const {
    
     title,
     s_desc,
     quantity,
     image,
-    
+    id,
     price,
-    onChangeQuantity,
-    onClickDelete,
+   
+ 
   } = props
   return (
     <Flex
@@ -59,11 +87,13 @@ export const CartItem = (props) => {
         <QuantitySelect
           value={quantity}
           onChange={(e) => {
-            onChangeQuantity?.(+e.currentTarget.value)
+            onChangeQuantity(+e.currentTarget.value,id)
           }}
         />
-        <PriceTag price={price} currency={"INR"} />
-        <CloseButton aria-label={`Delete ${title} from cart`} onClick={onClickDelete} />
+        <PriceTag price={price*quantity} currency={"INR"} />
+        <CloseButton aria-label={`Delete ${title} from cart`} onClick={()=>{
+          onClickDelete(id)
+        }} />
       </Flex>
 
       {/* Mobile */}
@@ -86,7 +116,7 @@ export const CartItem = (props) => {
             onChangeQuantity?.(+e.currentTarget.value)
           }}
         />
-        <PriceTag price={price} currency={"INR"} />
+       
       </Flex>
     </Flex>
   )
