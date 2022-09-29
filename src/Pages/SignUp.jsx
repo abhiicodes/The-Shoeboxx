@@ -34,7 +34,8 @@ import {
             <Text fontSize={'lg'} color={'gray.600'}>
               to get your favourite sneakers ✌️
             </Text>
-          </Stack>
+          </Stack> 
+          
           <Box
             rounded={'lg'}
             bg={useColorModeValue('white', 'gray.700')}
