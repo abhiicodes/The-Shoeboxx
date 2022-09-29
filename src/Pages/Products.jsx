@@ -1,3 +1,4 @@
+import { Container, Grid, GridItem, HStack, VStack } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
@@ -5,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { addProducts } from '../Redux/Products/actions';
 import Card from './../Components/Card';
 import store from './../Redux/store';
+import { Box } from '@mui/material';
+import ProductSidebar from '../Components/ProductSidebar';
 
 
 const Products = () => {
@@ -24,13 +27,40 @@ console.log(store.getState())
 
 
   return (
-    <div>
-<Link to={"/cart"}><button>Go to cart</button></Link>
+  
 
 
-{products.map((el) => (
+// {products.map((el) => (
        
-          <Card
+//           <Card
+//             key={el.id}
+//             el={el}
+            
+          
+//             text={"Add to Cart"}
+          
+//           />
+        
+//       ))}
+    
+<HStack>
+ 
+<Box>
+  <ProductSidebar/>
+</Box>
+
+
+<Box>
+
+<Grid
+      templateColumns={["repeat(1,1fr)", "repeat(2,2fr)", "repeat(3,3fr)"]}
+      gap="20px"
+      width="80%"
+      margin="auto"
+    >
+      {products.map((el) => (
+        <GridItem key={el.id}>
+         <Card
             key={el.id}
             el={el}
             
@@ -38,13 +68,12 @@ console.log(store.getState())
             text={"Add to Cart"}
           
           />
-        
+        </GridItem>
       ))}
-    
+    </Grid>
 
-
-
-    </div>
+      </Box>
+      </HStack>
   )
 }
 
