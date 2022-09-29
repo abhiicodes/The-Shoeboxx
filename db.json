@@ -1,40 +1,112 @@
 {
   "products": [
     {
-      "title": "Flair Unisex Shoes",
-      "brand": "Puma",
-      "price": 1999,
+      "title": "Air Jordan 2 Retro J Balvin",
+      "price": "1999",
+      "s_desc": "Celestine Blue/Multi-Colour/White",
+      "l_desc": "Like a breath of fresh air, this AJ2 refreshes its '86 design with plenty of energetic details and the sky's-the-limit style of the Prince of Reggaeton. Puffed-up panels on the upper and cloud graphics around the heel, collar and insole are paired with rainbow stitching accents and J Balvin's signature smiley face to steal the hearts of passers-by. Premium materials and Air cushioning in the heel will keep you dancing. And when the lights go out, you don't have to stop—just power up the tongue logo to let your glow-in-the-dark outsoles shine.",
+      "image": "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/16376cae-5d26-4432-ba6d-a40b1a34176c/air-jordan-2-retro-j-balvin-shoes-QsTWbM.png",
       "images": [
-        "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/195112/03/sv01/fnd/IND/fmt/png/Flair-Unisex-Shoes",
-        "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/195112/03/fnd/IND/fmt/png/Flair-Unisex-Shoes",
-        "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/195112/03/bv/fnd/IND/fmt/png/Flair-Unisex-Shoes"
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/ff7855a5-f9a6-453d-b9b8-e76ab3108ebb/air-jordan-2-retro-j-balvin-shoes-QsTWbM.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/2c544b02-4a1d-4c87-a856-5d4afab489e1/air-jordan-2-retro-j-balvin-shoes-QsTWbM.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/e7e3348d-562b-44be-b137-77fedf46de72/air-jordan-2-retro-j-balvin-shoes-QsTWbM.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/088f806f-f4c8-40ad-b7fa-c239d1806d9e/air-jordan-2-retro-j-balvin-shoes-QsTWbM.png"
       ],
-      "sizes": [
+      "rating": 4,
+      "reviews": 67,
+      "size": [
         6,
         7,
         8,
         9,
         10
       ],
+      "brand": "nike",
+      "color": "blue",
+      "added": false,
+      "quantity": 0,
       "id": 1
     },
     {
-      "title": "Jordan Shoes",
-      "brand": "Nike",
-      "price": 1599,
+      "title": "Nike Air Max 1 Premium QS 2",
+      "price": 1999,
+      "s_desc": "Medium Brown/Mushroom/Muslin/Mint Foam",
+      "l_desc": "Casual flair 101: Hemp canvas, check. Suede mudguard, check. Crepe outsole aesthetic, check. Turning back the clocks to 2004, we're reissuing the coveted Air Max 1 \"Crepe Hemp\". For a high-end finish, its distinct (and super-soft) outsole adds an air of sophistication that'll keep heads turning. Step on in, there's no containing your next move.",
+      "image": "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/15030137-f3e4-44c6-8c90-1ec2f210f3bb/air-max-1-qs-2-shoes-92GFD3.png",
       "images": [
-        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/16376cae-5d26-4432-ba6d-a40b1a34176c/air-jordan-2-retro-j-balvin-shoes-QsTWbM.png",
-        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/5fa0562e-5d77-46e1-acb2-e2fcbd03812a/air-jordan-2-retro-j-balvin-shoes-QsTWbM.png",
-        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/2c544b02-4a1d-4c87-a856-5d4afab489e1/air-jordan-2-retro-j-balvin-shoes-QsTWbM.png"
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/7ca9382c-319b-4779-b1c4-f0a2296f09a6/air-max-1-qs-2-shoes-92GFD3.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/d27886a4-0126-4418-bf1b-37fe2fe9a18b/air-max-1-qs-2-shoes-92GFD3.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/f69400dc-b9f0-4c77-ac74-6bd55745ff82/air-max-1-qs-2-shoes-92GFD3.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/126d9cb5-0e7a-4f28-82a1-7aea4b869afc/air-max-1-qs-2-shoes-92GFD3.png"
       ],
-      "sizes": [
+      "rating": 1,
+      "reviews": 13,
+      "size": [
         6,
+       
+        8,
+        9,
+        10
+      ],
+      "brand": "nike",
+      "color": "brown",
+      "added": false,
+      "quantity": 0,
+      "id": 2
+    },
+    {
+      "title": "Nike Air Max Flyknit Racer",
+      "price": 1599,
+      "s_desc": "Pure Platinum/White/Pure Platinum/Black",
+      "l_desc": "Paying homage to both heritage and innovation, we've blended 2 icons (old and new) to go beyond what's expected in the Nike Air Max Flyknit Racer. Incredibly light and airy Flyknit is paired with oh-so-comfy Air Max cushioning. Lace up and let your feet do the talking.",
+      "image": "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/c2deb3da-1553-4988-8ae2-c086c12017c8/air-max-flyknit-racer-shoes-Q9lN71.png",
+      "images": [
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/86c47097-d815-46e3-ba2d-7e513286c453/air-max-flyknit-racer-shoes-Q9lN71.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/b7675dbb-cd01-484b-98e7-14a5ce01edf9/air-max-flyknit-racer-shoes-Q9lN71.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/aeef3c65-e87f-443c-aa72-5edfaa5d66fc/air-max-flyknit-racer-shoes-Q9lN71.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/e3b342c5-4604-423d-934a-704601c1b131/air-max-flyknit-racer-shoes-Q9lN71.png"
+      ],
+      "rating": 4,
+      "reviews": 34,
+      "size": [
+       
         7,
         8,
         9,
         10
       ],
-      "id": 2
+      "brand": "nike",
+      "color": "black",
+      "added": false,
+      "quantity": 0,
+      "id": 3
+    },
+    {
+      "title": "Shaq Attaq Basketball Shoes",
+      "price": 1599,
+      "s_desc": "Ftwr White / Core Black / Azure",
+      "l_desc": "We've Got Your Back. Enjoy Free Shipping on Orders Over $75 and a 30 Day Return Policy. Free Shipping, Returns and Exchanges for Reebok UNLOCKED Members",
+      "image": "https://assets.reebok.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/eb186b0fbb884eb9ada9aeb700040c2a_9366/Shaq_Attaq_Basketball_Shoes_White_GX3881_01_standard.jpg",
+      "images": [
+        "https://assets.reebok.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/2e3581bdc3c4453389cdaeb700046a62_9366/Shaq_Attaq_Basketball_Shoes_White_GX3881_03_standard.jpg",
+        "https://assets.reebok.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/209453efdd154546a9b8aeb70003ca6c_9366/Shaq_Attaq_Basketball_Shoes_White_GX3881_04_standard.jpg",
+        "https://assets.reebok.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/158649f87fa543adb17aaeb70003b677_9366/Shaq_Attaq_Basketball_Shoes_White_GX3881_05_standard.jpg",
+        "https://assets.reebok.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/902516c2607e4622bc95aeb70003f100_9366/Shaq_Attaq_Basketball_Shoes_White_GX3881_06_standard_hover.jpg"
+      ],
+      "rating": 2,
+      "reviews": 13,
+      "size": [
+        6,
+        7,
+        8,
+        9
+       
+      ],
+      "brand": "reebok",
+      "color": "blue",
+      "added": false,
+      "quantity": 0,
+      "id": 4
     }
   ]
 }

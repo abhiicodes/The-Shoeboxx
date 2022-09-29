@@ -3,12 +3,24 @@ import { Box, Flex, Heading, Spacer, Text, VStack } from "@chakra-ui/react";
 import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { Stack } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { SORT_HIGH, SORT_LOW } from "./../Redux/Products/actions";
+import { addProducts, SORT_HIGH, SORT_LOW } from "./../Redux/Products/actions";
+import axios  from 'axios';
 
 const ProductSidebar = () => {
   const dispatch = useDispatch();
 
   const sortBy = (e) => {
+
+if(e.target.checked==false){
+   return axios
+    .get("http://localhost:3000/products")
+    .then((res) => res.data)
+    .then((items) => {
+      console.log(items)
+     dispatch(addProducts(items)) ;
+    });
+}
+
     const { name } = e.target;
     if (name == "l2h") {
       dispatch({ type: SORT_LOW });
@@ -17,8 +29,13 @@ const ProductSidebar = () => {
     }
   };
 
+  const filterByBrand = () => {
+    const { value } = e.target;
+    console.log(value);
+  };
+
   return (
-    <Box mb={5200} pl={5}>
+    <Box mb={800} pl={5}>
       <VStack>
         <Box>
           <CheckboxGroup colorScheme="green">
@@ -42,9 +59,10 @@ const ProductSidebar = () => {
             <Stack gap={0.2}>
               <Heading fontSize={"lg"}>Brand</Heading>
               <Spacer />
-              <Checkbox value="h2l">High-Low</Checkbox>
-              <Checkbox value="l2h">Low-High</Checkbox>
-              <Checkbox value="pop">Popularity</Checkbox>
+              <Checkbox name="nike" value="nike">
+                Nike
+              </Checkbox>
+              <Checkbox value="reebok">Reebok</Checkbox>
             </Stack>
           </CheckboxGroup>
         </Box>

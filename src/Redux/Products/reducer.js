@@ -6,7 +6,7 @@ const productReducer = (state = initState, { type, payload }) => {
 
   switch (type) {
     case SET_PRODUCTS:
-      return { ...state, products: payload };
+      return { ...state, products: payload};
 
     case SORT_HIGH:
       return { ...state, products: [...state.products].sort((a,b)=>b.price-a.price) };

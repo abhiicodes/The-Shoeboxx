@@ -18,9 +18,10 @@ const products = useSelector((store)=>store.productReducer.products)
 console.log(store.getState())
   useEffect(() => {
     axios
-      .get("https://fakestoreapi.com/products")
+      .get("http://localhost:3000/products")
       .then((res) => res.data)
       .then((items) => {
+        console.log(items)
        dispatch(addProducts(items)) ;
       });
   }, []);
