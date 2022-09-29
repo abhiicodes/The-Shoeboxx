@@ -50,7 +50,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../Redux/CartState/action";
 
-function Rating({ rating, numReviews }) {
+export function Rating({ rating, numReviews }) {
   return (
     <Box display={"flex"} alignItems="center">
       {Array(5)

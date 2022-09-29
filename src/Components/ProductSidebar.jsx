@@ -3,7 +3,7 @@ import { Box, Flex, Heading, Spacer, Text, VStack } from "@chakra-ui/react";
 import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { Stack } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { addProducts, SORT_HIGH, SORT_LOW } from "./../Redux/Products/actions";
+import { addProducts, FILTER_BRAND, FILTER_COLOR, SORT_HIGH, SORT_LOW } from "./../Redux/Products/actions";
 import axios  from 'axios';
 
 const ProductSidebar = () => {
@@ -29,9 +29,34 @@ if(e.target.checked==false){
     }
   };
 
-  const filterByBrand = () => {
-    const { value } = e.target;
-    console.log(value);
+  const filterByBrand = (e) => {
+    if(e.target.checked==false){
+        return axios
+         .get("http://localhost:3000/products")
+         .then((res) => res.data)
+         .then((items) => {
+           console.log(items)
+          dispatch(addProducts(items)) ;
+         });
+     }
+     
+         const { name } = e.target;
+        dispatch({type:FILTER_BRAND,payload:name})
+  };
+
+  const filterByColor = (e) => {
+    if(e.target.checked==false){
+        return axios
+         .get("http://localhost:3000/products")
+         .then((res) => res.data)
+         .then((items) => {
+           console.log(items)
+          dispatch(addProducts(items)) ;
+         });
+     }
+     
+         const { name } = e.target;
+        dispatch({type:FILTER_COLOR,payload:name})
   };
 
   return (
@@ -56,13 +81,13 @@ if(e.target.checked==false){
         </Box>
         <Box>
           <CheckboxGroup colorScheme="green">
-            <Stack gap={0.2}>
+            <Stack gap={0.2} onChange={filterByBrand}>
               <Heading fontSize={"lg"}>Brand</Heading>
               <Spacer />
               <Checkbox name="nike" value="nike">
                 Nike
               </Checkbox>
-              <Checkbox value="reebok">Reebok</Checkbox>
+              <Checkbox name="reebok" value="reebok">Reebok</Checkbox>
             </Stack>
           </CheckboxGroup>
         </Box>
@@ -70,15 +95,13 @@ if(e.target.checked==false){
           <CheckboxGroup colorScheme="green">
             <Stack
               gap={0.2}
-              onChange={(e) => {
-                console.log(e.target);
-              }}
+              onChange={filterByColor}
             >
-              <Heading fontSize={"lg"}>Size</Heading>
+              <Heading fontSize={"lg"}>Color</Heading>
               <Spacer />
-              <Checkbox value="h2l">High-Low</Checkbox>
-              <Checkbox value="l2h">Low-High</Checkbox>
-              <Checkbox value="pop">Popularity</Checkbox>
+              <Checkbox name="blue">Blue</Checkbox>
+              <Checkbox name="black">Black</Checkbox>
+              
             </Stack>
           </CheckboxGroup>
         </Box>

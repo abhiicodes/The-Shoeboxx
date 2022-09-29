@@ -10,10 +10,18 @@ import {
 import * as React from 'react'
 import { CartItem } from './CartItem'
 import { CartOrderSummary } from './CartOrderSummary'
-import { cartData } from './_data'
+// import { cartData } from './_data'
+import { useSelector } from 'react-redux';
+import store from './../../Redux/store';
 
-export const CartComponent = () => (
-  <Box
+
+
+
+export const CartComponent = () => {
+
+const cartData = useSelector((store)=>store.cartReducer.cart)
+
+  return (<Box
     maxW={{
       base: '3xl',
       lg: '7xl',
@@ -51,7 +59,7 @@ export const CartComponent = () => (
         flex="2"
       >
         <Heading fontSize="2xl" fontWeight="extrabold">
-          Shopping Cart (3 items)
+          Shopping Cart ({cartData.length} items)
         </Heading>
 
         <Stack spacing="6">
@@ -65,9 +73,10 @@ export const CartComponent = () => (
         <CartOrderSummary />
         <HStack mt="6" fontWeight="semibold">
           <p>or</p>
-          <Link color={mode('blue.500', 'blue.200')}>Continue shopping</Link>
+          <Link color={mode('gray.900', 'gray.200')}>Continue shopping</Link>
         </HStack>
       </Flex>
     </Stack>
   </Box>
 )
+          }
