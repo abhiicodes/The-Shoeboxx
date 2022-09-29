@@ -1,9 +1,14 @@
+import { SET_PRODUCTS } from './actions';
+
+
+
+
 const initState = { products: [] };
 const productReducer = (state = initState, { type, payload }) => {
-  console.log(state)
+  // console.log(state)
   
     switch (type) {
-    case "ADD_PRODUCTS":
+    case SET_PRODUCTS:
         return {...state,products:payload}
         
   

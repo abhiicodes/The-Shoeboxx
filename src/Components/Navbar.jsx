@@ -1,9 +1,9 @@
 import React from 'react'
-import { Stack } from '@mui/material';
+
 
 const Navbar = () => {
   return (
-    <Stack>Navbar</Stack>
+    <div>Navbar</div>
   )
 }
 
