@@ -26,13 +26,13 @@ import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
 import {useSelector} from "react-redux"
 import store from "../Redux/store";
 
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import CustomAvatar from "./CustomAvatar";
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
   const {status} = useSelector((store)=>store.authReducer)
-
+const navigate = useNavigate()
   return (
     <Box>
       <Flex
@@ -61,7 +61,7 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Box
+          <Box _hover={{cursor:"pointer"}} onClick={()=>navigate("/")}
            
             color={useColorModeValue("gray.800", "white")}
           >

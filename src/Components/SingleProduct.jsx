@@ -26,6 +26,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart } from "../Redux/CartState/action";
 import { Rating } from "./Card";
 import store from './../Redux/store';
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react'
+import CustomLoader from "./CustomLoader";
 
 export default function SingleProduct() {
   const [bdisabled, setBdisabled] = useState(false);
@@ -35,17 +42,32 @@ export default function SingleProduct() {
   const [data, setData] = useState({});
   const dispatch = useDispatch()
   const navigate = useNavigate()
+const [loading,setLoading] = useState(false)
+
 const cart = useSelector((store)=>store.cartReducer.cart)
-console.log(cart)
+
   useEffect(() => {
+setLoading(true)
+
     axios
       .get(`http://localhost:3000/products/${id}`)
-      .then((res) => setData(res.data)).then((res)=>{
-        cart.map((el)=>{
-          if(el.id===res?.data?.id) setBdisabled(true)
-        })
+      .then((res) => {
+        for(let i = 0;i<cart.length;i++){
+          if(cart[i].id===res.data.id){
+            setBdisabled(true)
+            break;
+          } 
+        }
+        
+        
+        
+        setData(res.data)
+        setLoading(false)
+      
+      
       });
   }, []);
+  if(loading) return <CustomLoader/>
 
   return (
     <Container maxW={"7xl"}>
@@ -140,12 +162,12 @@ console.log(cart)
               }}
               disabled={bdisabled}
               onClick={()=>{
-                
+                if(size===0) return alert("Please select size")
 dispatch(addItemToCart({...data,size:size}))
 navigate("/cart")
               }}
             >
-              {bdisabled?"Item Already in the cart":"Add to Cart"}
+              Add to cart
             </Button>
 
             <Stack
