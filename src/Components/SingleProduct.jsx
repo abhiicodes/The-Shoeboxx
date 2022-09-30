@@ -22,9 +22,10 @@ import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart } from "../Redux/CartState/action";
 import { Rating } from "./Card";
+import store from './../Redux/store';
 
 export default function SingleProduct() {
   const [bdisabled, setBdisabled] = useState(false);
@@ -34,10 +35,16 @@ export default function SingleProduct() {
   const [data, setData] = useState({});
   const dispatch = useDispatch()
   const navigate = useNavigate()
+const cart = useSelector((store)=>store.cartReducer.cart)
+console.log(cart)
   useEffect(() => {
     axios
       .get(`http://localhost:3000/products/${id}`)
-      .then((res) => setData(res.data));
+      .then((res) => setData(res.data)).then((res)=>{
+        cart.map((el)=>{
+          if(el.id===res?.data?.id) setBdisabled(true)
+        })
+      });
   }, []);
 
   return (
@@ -133,12 +140,12 @@ export default function SingleProduct() {
               }}
               disabled={bdisabled}
               onClick={()=>{
-                setBdisabled(true)
+                
 dispatch(addItemToCart({...data,size:size}))
 navigate("/cart")
               }}
             >
-              Add to cart
+              {bdisabled?"Item Already in the cart":"Add to Cart"}
             </Button>
 
             <Stack

@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Image, GridItem, Grid } from "@chakra-ui/react";
 import CaptionCarousel from "../Components/Carousel";
+import CustomLoader from "../Components/CustomLoader";
 
 const Home = () => {
+  const [loading,setLoading] = useState(true)
+
+useEffect(()=>{
+setLoading(false)
+
+},[])
+if(loading) return <CustomLoader/>
+
+
+
   return (
     <Box>
       <Image

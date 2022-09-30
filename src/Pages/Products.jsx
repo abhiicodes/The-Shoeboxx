@@ -8,6 +8,7 @@ import Card from './../Components/Card';
 import store from './../Redux/store';
 import { Box } from '@mui/material';
 import ProductSidebar from '../Components/ProductSidebar';
+import CustomLoader from '../Components/CustomLoader';
 
 
 const Products = () => {
@@ -15,16 +16,24 @@ const Products = () => {
   const [data, setData] = useState([]);
 const dispatch = useDispatch()
 const products = useSelector((store)=>store.productReducer.products)
+const [loading,setLoading] = useState(true)
 console.log(store.getState())
   useEffect(() => {
+
+    setLoading(true)
     axios
       .get("http://localhost:3000/products")
       .then((res) => res.data)
       .then((items) => {
         console.log(items)
        dispatch(addProducts(items)) ;
+       setLoading(false)
       });
   }, []);
+
+
+if(loading) return <CustomLoader/>
+
 
 
   return (

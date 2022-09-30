@@ -22,10 +22,16 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
+import {useSelector} from "react-redux"
+import store from "../Redux/store";
 
 import { Link as RouterLink } from "react-router-dom";
+import CustomAvatar from "./CustomAvatar";
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
+
+  const {status} = useSelector((store)=>store.authReducer)
 
   return (
     <Box>
@@ -55,21 +61,19 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            mt={1.5}
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
+          <Box
+           
             color={useColorModeValue("gray.800", "white")}
           >
-            The Shoe Box
-          </Text>
+           <Box w={130}><Image src="https://www.pngitem.com/pimgs/m/537-5370248_shoe-box-logo-hd-png-download.png"/></Box>
+          </Box>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
         </Flex>
 
-        <Stack
+       {(status && <CustomAvatar/>) || <Stack
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
           direction={"row"}
@@ -97,7 +101,7 @@ export default function Navbar() {
           >
             Sign Up
           </Button>
-        </Stack>
+        </Stack> } 
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -286,6 +290,8 @@ const MobileNavItem = ({ label, children, href }) => {
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack
+
+
           mt={2}
           pl={4}
           borderLeft={1}

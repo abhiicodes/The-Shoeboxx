@@ -16,9 +16,11 @@ import {
   } from '@chakra-ui/react';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-  
+  import { useNavigate, Link as RouterLink } from 'react-router-dom';
+
   export default function Signup() {
     const [showPassword, setShowPassword] = useState(false);
+   
   
     return (
       <Flex
@@ -89,7 +91,7 @@ import {
               </Stack>
               <Stack pt={6}>
                 <Text align={'center'}>
-                  Already a user? <Link color={'blue.400'}>Login</Link>
+                  Already a user? <RouterLink to={"/login"} color={'blue.400'}>Login</RouterLink>
                 </Text>
               </Stack>
             </Stack>

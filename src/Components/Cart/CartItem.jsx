@@ -56,6 +56,7 @@ export const CartItem = (props) => {
     image,
     id,
     price,
+    size
    
  
   } = props
@@ -91,6 +92,7 @@ export const CartItem = (props) => {
           }}
         />
         <PriceTag price={price*quantity} currency={"INR"} />
+        <Box>{size}</Box>
         <CloseButton aria-label={`Delete ${title} from cart`} onClick={()=>{
           onClickDelete(id)
         }} />
@@ -107,7 +109,7 @@ export const CartItem = (props) => {
           md: 'none',
         }}
       >
-        <Link fontSize="sm" textDecor="underline">
+        <Link fontSize="sm" >
           Delete
         </Link>
         <QuantitySelect

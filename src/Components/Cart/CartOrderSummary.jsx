@@ -51,7 +51,7 @@ export const CartOrderSummary = () => {
 
       <Stack spacing="6">
         <OrderSummaryItem label="Shipping + Tax">
-          <Link href="#" textDecor="underline">
+          <Link href="#">
             Free
           </Link>
         </OrderSummaryItem>
