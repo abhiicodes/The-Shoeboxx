@@ -8,6 +8,7 @@ import {
   HStack,
   InputRightElement,
   Stack,
+  VStack,
   Button,
   Heading,
   Text,
@@ -17,16 +18,20 @@ import {
   AlertTitle,
   AlertDescription,
 } from "@chakra-ui/react";
+import { PinInput, PinInputField } from '@chakra-ui/react'
 import { Spinner } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useNavigate, Link as RouterLink, Navigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { SIGNUP } from "../Redux/AuthState/actions";
+import { useSelector } from 'react-redux';
 const initState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
+  firstName: "a",
+  lastName: "a",
+  email: "a@a.com",
+  password: "1",
 };
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,12 +42,27 @@ export default function Signup() {
   const [fail, setFail] = useState(false);
   const [failmsg, setFailmsg] = useState("");
   const navigate = useNavigate();
-  const handleFormChange = (e) => {
+  const dispatch = useDispatch()
+const [otpverify,setOtpverify] = useState(false);
+const [otpspinner,setOtpspinner] = useState(false)
+const [otpval,setOtpVal] = useState("");
+const[otpsuccess,setOtpSuccess] = useState(false);
+const[otpfail,setOtpfail] = useState(false) 
+
+
+
+
+
+
+
+const handleFormChange = (e) => {
     const { name, value } = e.target;
 
     setFormstate({ ...formState, [name]: value });
     // console.log(formState)
   };
+
+  const user_id = useSelector((store)=>store.authReducer.user_id)
 
   return (
     <Flex
@@ -140,10 +160,12 @@ export default function Signup() {
                       setFail(false);
                       setSuccess(true);
                       setSpinner(false);
-
-                      setTimeout(() => {
-                        navigate("/login");
-                      }, 3000);
+// console.log(res)
+setOtpverify(true)
+dispatch({type:SIGNUP,payload:res.data.user_id})
+                      // setTimeout(() => {
+                      //   navigate("/login");
+                      // }, 3000);
 
                     
                     })
@@ -171,8 +193,75 @@ export default function Signup() {
             {success && (
               <Alert status="success">
                 <AlertIcon />
-                Account created successfully. You will be redirected to Log In
-                page
+                Account created successfully. Please verify thee otp recieved on your email
+              </Alert>
+            )}
+
+
+{otpverify && <Box><Stack>
+  <Box><Heading size="xl">Enter the OTP below</Heading></Box>
+  <HStack>
+  <PinInput otp value={otpval} onChange={(e)=>{
+   setOtpVal(e)
+    
+  }}>
+  <PinInputField />
+  <PinInputField />
+  <PinInputField />
+  <PinInputField />
+</PinInput>
+
+  </HStack>
+  
+  <Button
+   width="200px"
+   bg={"blue.400"}
+   color={"white"}
+   _hover={{
+     bg: "blue.500",
+   }}
+   
+   onClick={()=>{
+    setOtpfail(false)
+    setOtpSuccess(false)
+    setOtpspinner(true)
+    let url =`http://localhost:8078/user/verify/${user_id}`
+    // console.log(url)
+axios.post(url,{otp:otpval}).then((res)=>{
+ setOtpspinner(false)
+ setOtpSuccess(true)
+ setOtpVal("")
+ setSuccess(false)
+ setOtpverify(false)
+ setTimeout(() => {
+  navigate("/login")
+ }, 3000);
+}).catch((err)=>{
+setOtpfail(true)
+
+setOtpspinner(false)
+})
+   }}
+   
+   
+   
+   
+   > {(otpspinner && <Spinner color="white.500" />) || "Confirm OTP"}</Button>
+  </Stack>
+
+ 
+  </Box>}
+  {otpfail && (
+              <Alert status="error">
+                <AlertIcon />
+                Incorrect OTP
+              </Alert>
+            )}
+
+            {otpsuccess && (
+              <Alert status="success">
+                <AlertIcon />
+               Account verified successfully. You will be redirected to Login page in 3 seconds.
               </Alert>
             )}
 

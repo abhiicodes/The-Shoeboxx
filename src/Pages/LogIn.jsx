@@ -6,17 +6,23 @@ import {
   Input,
   Checkbox,
   Stack,
-  Link,
+ 
   Button,
   Heading,
   Text,
   useColorModeValue,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { LOGIN } from "./../Redux/AuthState/actions";
+import { LOGIN, SIGNUP } from "./../Redux/AuthState/actions";
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const initVal = { email: "", password: "" };
 
@@ -26,9 +32,17 @@ export default function Login() {
 
   const [fstate, setFstate] = useState(initVal);
   // console.log(fstate)
+  const [success, setSuccess] = useState(false);
+  const [spinner, setSpinner] = useState(false);
+
+  const [fail, setFail] = useState(false);
+  const [failmsg, setFailmsg] = useState("");
+
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
+    // console.log(name, value);
     setFstate({ ...fstate, [name]: value });
   };
 
@@ -78,7 +92,7 @@ export default function Login() {
                 justify={"space-between"}
               >
                 <Checkbox>Remember me</Checkbox>
-                <Link color={"blue.400"}>Forgot password?</Link>
+                <Link to={"/forgotpassword"} color={"blue.400"}>Forgot password?</Link>
               </Stack>
               <Button
                 bg={"gray.900"}
@@ -87,19 +101,52 @@ export default function Login() {
                   bg: "blue.500",
                 }}
                 onClick={() => {
+                  setSpinner(true);
+
                   axios
-                    .post("https://reqres.in/api/login", fstate)
+                    .post("http://localhost:8078/user/login", fstate)
                     .then((res) =>
                       {
-                        console.log(res.data)
+                        setFail(false);
+                      setSuccess(true);
+                      setSpinner(false);
+
+                        // console.log(res);
                         
-                        dispatch({ type: LOGIN, payload: res.data.token })}
-                    ).then((res)=>navigate("/"))
-                    .catch((err) => console.log(err));
+                    dispatch({ type: LOGIN, payload: res.data.token })
+                    dispatch({ type: SIGNUP, payload: null })
+                  setTimeout(() => {
+                    navigate("/")
+                  },1500);
+                  
+                  
+                  }
+                    )
+                    .catch((err) => {
+                      setFail(true)
+                      setSuccess(false);
+                      setSpinner(false);
+                    });
                 }}
               >
-                Sign in
+           {(spinner && <Spinner color="white.500" />) || "Sign In"}
               </Button>
+
+              {fail && (
+              <Alert status="error">
+                <AlertIcon />
+                Incorrect email or password
+              </Alert>
+            )}
+
+            {success && (
+              <Alert status="success">
+                <AlertIcon />
+                Sign in successful
+              </Alert>
+            )}
+
+
             </Stack>
           </Stack>
         </Box>
