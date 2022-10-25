@@ -97,7 +97,7 @@ const navigate = useNavigate()
             fontWeight={600}
             color={"white"}
             bg={"gray.900"}
-            href={"#"}
+          
             _hover={{
               bg: "gray.300",
             }}
@@ -160,7 +160,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
     <RouterLink to={"/products"}>
       <Box
-        href={href}
+      
         role={"group"}
         display={"block"}
         p={2}
@@ -209,7 +209,7 @@ const DesktopNav = () => {
               <RouterLink to={navItem.href}>
                 <Box
                   p={2}
-                  href={navItem.href ?? "#"}
+               
                   fontSize={"sm"}
                   fontWeight={500}
                   color={linkColor}
@@ -265,7 +265,7 @@ const MobileNavItem = ({ label, children, href }) => {
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <RouterLink to={href}>
+      <RouterLink to={"/products"}>
 
       <Flex
         py={2}
@@ -308,9 +308,9 @@ const MobileNavItem = ({ label, children, href }) => {
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <RouterLink key={child.label} py={2} to={"/products"}>
                 {child.label}
-              </Link>
+              </RouterLink>
             ))}
         </Stack>
       </Collapse>

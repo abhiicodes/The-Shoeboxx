@@ -3,7 +3,6 @@ import {
   Flex,
   Heading,
   Input,
- 
   Stack,
   Text,
   useColorModeValue as mode,
@@ -11,14 +10,14 @@ import {
 import * as React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { formatPrice } from "./PriceTag";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import store from "./../../Redux/store";
 import { useEffect } from "react";
 import { useState } from "react";
 
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { SET } from "../../Redux/CartState/action";
 const OrderSummaryItem = (props) => {
   // console.log(props);
 
@@ -37,7 +36,60 @@ export const CartOrderSummary = () => {
   const cart = useSelector((store) => store.cartReducer.cart);
   const [total, setTotal] = useState(0);
   const [text, setText] = useState("");
-const token = useSelector((store)=>store.authReducer.token)
+  const token = useSelector((store) => store.authReducer.token);
+  
+  const dispatch = useDispatch()
+  const initPayment = (data)=>{
+    const options = {
+      key:"rzp_test_9iR5x90ECsqsCQ",
+      amount:data.amount,
+      currency:data.currency,
+      order_id:data.id,
+      name:"ShoeBox",
+      image:"https://www.pngitem.com/pimgs/m/537-5370248_shoe-box-logo-hd-png-download.png",
+      description:"Payment for the order",
+     
+      handler: async(response)=>{
+        try {
+          const verifyUrl = "http://localhost:8078/api/payment/verify";
+          const {data} = await axios.post(verifyUrl,response)
+       console.log(response)
+
+       const order = await  axios.post('http://localhost:8078/order', {
+      
+       },
+       {
+         headers: {
+           authorization: 'Bearer ' + token
+         }
+       }).then((res)=>{
+        console.log(res,"ordered success")
+        return res;
+       })
+       
+        } catch (error) {
+          console.log(error)
+        }
+      },
+     
+
+      
+    }
+    const rzp1= new window.Razorpay(options)
+    rzp1.open();
+  }
+
+  const handlePayment = async()=>{
+    try {
+    const orderUrl = "http://localhost:8078/api/payment/orders"    ;
+    const {data} = await axios.post(orderUrl,{price:100})
+   
+    initPayment(data.data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
   useEffect(() => {
     let nt = 0;
     for (let i = 0; i < cart.length; i++) {
@@ -52,9 +104,7 @@ const token = useSelector((store)=>store.authReducer.token)
 
       <Stack spacing="6">
         <OrderSummaryItem label="Shipping + Tax">
-          <Link href="#">
-            Free
-          </Link>
+          <Link href="#">Free</Link>
         </OrderSummaryItem>
         <OrderSummaryItem label="Coupon Code :">
           {/* <Link href="#" textDecor="underline">
@@ -93,15 +143,9 @@ const token = useSelector((store)=>store.authReducer.token)
         size="lg"
         fontSize="md"
         rightIcon={<FaArrowRight />}
-        onClick={()=>{
-          axios.post('http://localhost:8078/cart/set', {
- items:cart
-},
-{
-  headers: {
-    authorization: 'Bearer ' + token
-  }
-}).then((res)=>console.log(res))
+        onClick={() => {
+         
+         handlePayment()
         }}
       >
         <Link to={"#"}>Checkout</Link>

@@ -177,11 +177,11 @@ quantity:1
   headers: {
     authorization: 'Bearer ' + token
   }
-})
+}).then((res)=>console.log("added",res))
 navigate("/cart")
               }}
             >
-              Add to cart
+             {(bdisabled && "Item already in the cart") || "Add to cart"}
             </Button>
 
             <Stack

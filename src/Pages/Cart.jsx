@@ -25,26 +25,7 @@ setLoading(false)
 },[])
 
 
-useEffect(()=>{
-  axios.get('http://localhost:8078/cart', {
-    headers: {
-      authorization: 'Bearer ' + token //the token is a variable which holds the token
-    }
-   })
-    .then((res) => res.data)
-    .then((items) => {
-      console.log(items)
-      let upCart = items.items.map((el)=>{
-        console.log(el)
-        return {...el.product_id,quantity:el.quantity,size:el.size}
-      })
-      console.log(upCart)
-      dispatch({type:SET,payload:upCart})
-   
-    }).catch((err)=>{
-      console.log(err)
-    });
-},[])
+
 
 
 useEffect(()=>{
@@ -55,8 +36,36 @@ useEffect(()=>{
      headers: {
        authorization: 'Bearer ' + token
      }
-   }).then((res)=>console.log(res))
+   })
 },[cart])
+
+
+useEffect(()=>{
+ 
+  axios.get('http://localhost:8078/cart', {
+    headers: {
+      authorization: 'Bearer ' + token //the token is a variable which holds the token
+    }
+   })
+    .then((res) => res.data)
+    .then((items) => {
+      console.log(items)
+      let upCart = items?.items?.map((el)=>{
+     
+        return {...el.product_id,quantity:el.quantity,size:el.size}
+      })
+     
+    console.log("up", upCart)
+if(cart.length==0){
+ dispatch({type:SET,payload:upCart})
+}
+
+      
+   
+    }).catch((err)=>{
+      console.log(err)
+    });
+},[])
 
 if(loading) return <CustomLoader/>
 

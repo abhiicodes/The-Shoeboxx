@@ -8,6 +8,7 @@ import Signup from '../Pages/SignUp';
 import Products from './../Pages/Products';
 import ForgotPassword from './../Pages/ForgotPassword';
 import PasswordReset from './../Pages/PasswordReset';
+import Orders from '../Pages/Orders';
 
 
 const AllRoutes = () => {
@@ -23,7 +24,7 @@ const AllRoutes = () => {
     <Route path="/signup" element={<Signup/>}/>
     <Route path="/forgotpassword" element={<ForgotPassword/>}/>
     <Route path="/resetpassword" element={<PasswordReset/>}/>
-
+<Route path='/orders' element={<Orders/>}/>
 </Routes>
 
 

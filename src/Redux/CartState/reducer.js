@@ -1,7 +1,7 @@
 
 import { ADD_TO_CART, DELETE, QUANTITY, SET } from './action';
 
-const initCartState = {cart:[]}
+const initCartState = {cart:[],total:0}
 
 export const cartReducer = (state=initCartState,{type,payload})=>{
     switch (type) {
