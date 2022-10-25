@@ -2,7 +2,7 @@ import { Container, Grid, GridItem, HStack, VStack } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { addProducts } from '../Redux/Products/actions';
 import Card from './../Components/Card';
 import store from './../Redux/store';
@@ -19,10 +19,10 @@ const dispatch = useDispatch()
 const products = useSelector((store)=>store.productReducer.products)
 const [loading,setLoading] = useState(true)
 const token = useSelector((store) => store.authReducer.token);
-
+const navigate = useNavigate();
 console.log(store.getState())
   useEffect(() => {
-
+if(!token) return navigate("/signup")
     setLoading(true)
     axios.get('http://localhost:8078/categories/mobiles', {
       headers: {

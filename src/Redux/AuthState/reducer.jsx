@@ -1,11 +1,11 @@
 import { LOGIN, SIGNUP } from './actions';
-const initState = {status:true,token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNAYS5jb20iLCJfaWQiOiI2MzUyODMyNmQwZDY5MDc1NmYxZjc4YjUiLCJpYXQiOjE2NjY2Nzg4MDd9.xSUSk6Fr9hkjpZ6ST9hzVH1FV5DN00NfwX7yI57y6_4",user_id:"1"}
+const initState = {status:true,name:"A",token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJfaWQiOiI2MzU3OWY4YzIyN2Q4YzI5OGNjNzI4YWUiLCJpYXQiOjE2NjY2ODY4ODR9.yVohHyJkPcHda_tc8P1F5Zz45DdbKDE3Rt8vwZyXDHQ",user_id:"1"}
 
 export const authReducer = (state=initState,{type,payload})=>{
     // console.log(type,payload)
     switch (type) {
         case LOGIN:
-            return {...state,status:true,token:payload}
+            return {...state,status:true,token:payload.token,name:payload.name}
            case SIGNUP:
             return {...state,user_id:payload} 
     

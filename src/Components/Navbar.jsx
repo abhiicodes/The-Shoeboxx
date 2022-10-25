@@ -31,7 +31,7 @@ import CustomAvatar from "./CustomAvatar";
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
-  const {status} = useSelector((store)=>store.authReducer)
+  const status = useSelector((store)=>store.authReducer.status)
 const navigate = useNavigate()
   return (
     <Box>
@@ -79,15 +79,18 @@ const navigate = useNavigate()
           direction={"row"}
           spacing={6}
         >
-          <Button
-            as={"a"}
+          <RouterLink to={"/signup"}>
+            <Button
+           
             fontSize={"sm"}
             fontWeight={400}
             variant={"link"}
-            href={"#"}
-          >
+          
+            >
             Sign In
           </Button>
+            </RouterLink>
+            <RouterLink to={"/signup"}>
           <Button
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
@@ -101,6 +104,7 @@ const navigate = useNavigate()
           >
             Sign Up
           </Button>
+          </RouterLink>
         </Stack> } 
       </Flex>
 
@@ -202,7 +206,7 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <RouterLink>
+              <RouterLink to={navItem.href}>
                 <Box
                   p={2}
                   href={navItem.href ?? "#"}
@@ -261,32 +265,35 @@ const MobileNavItem = ({ label, children, href }) => {
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
+      <RouterLink to={href}>
+
       <Flex
         py={2}
-        as={Link}
-        href={href ?? "#"}
+     
+        
         justify={"space-between"}
         align={"center"}
         _hover={{
           textDecoration: "none",
         }}
-      >
+        >
         <Text
           fontWeight={600}
           color={useColorModeValue("gray.600", "gray.200")}
-        >
+          >
           {label}
         </Text>
         {children && (
           <Icon
-            as={ChevronDownIcon}
-            transition={"all .25s ease-in-out"}
-            transform={isOpen ? "rotate(180deg)" : ""}
-            w={6}
-            h={6}
+          as={ChevronDownIcon}
+          transition={"all .25s ease-in-out"}
+          transform={isOpen ? "rotate(180deg)" : ""}
+          w={6}
+          h={6}
           />
-        )}
+          )}
       </Flex>
+          </RouterLink>
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack

@@ -2,14 +2,45 @@ import React, { useEffect, useState } from "react";
 import { Box, Image, GridItem, Grid } from "@chakra-ui/react";
 import CaptionCarousel from "../Components/Carousel";
 import CustomLoader from "../Components/CustomLoader";
+import { useSelector, useDispatch } from 'react-redux';
+import store from './../Redux/store';
+import { useNavigate } from 'react-router-dom';
+import  axios  from 'axios';
+import { SET } from "../Redux/CartState/action";
 
 const Home = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [loading,setLoading] = useState(true)
-
+const token = useSelector((store)=>store.authReducer.token)
 useEffect(()=>{
+  if(!token) return navigate("/signup")
 setLoading(false)
 
 },[])
+
+useEffect(()=>{
+  axios.get('http://localhost:8078/cart', {
+    headers: {
+      authorization: 'Bearer ' + token //the token is a variable which holds the token
+    }
+   })
+    .then((res) => res.data)
+    .then((items) => {
+      console.log(items)
+      let upCart = items.items.map((el)=>{
+        console.log(el)
+        return {...el.product_id,quantity:el.quantity,size:el.size}
+      })
+      console.log(upCart)
+      dispatch({type:SET,payload:upCart})
+   
+    }).catch((err)=>{
+      console.log(err)
+    });
+},[])
+
+
 if(loading) return <CustomLoader/>
 
 

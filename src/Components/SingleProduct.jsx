@@ -47,6 +47,7 @@ const [loading,setLoading] = useState(false)
 const cart = useSelector((store)=>store.cartReducer.cart)
 const token = useSelector((store)=>store.authReducer.token)
   useEffect(() => {
+    if(!token) return navigate("/signup")
 setLoading(true)
 
 axios.get(`http://localhost:8078/categories/mobiles/${id}`, {
@@ -166,7 +167,17 @@ axios.get(`http://localhost:8078/categories/mobiles/${id}`, {
               disabled={bdisabled}
               onClick={()=>{
                 if(size===0) return alert("Please select size")
-dispatch(addItemToCart({...data,size:size}))
+ dispatch(addItemToCart({...data,size:size}))
+axios.post('http://localhost:8078/cart/add', {
+product_id:data._id,
+size:size,
+quantity:1
+},
+{
+  headers: {
+    authorization: 'Bearer ' + token
+  }
+})
 navigate("/cart")
               }}
             >

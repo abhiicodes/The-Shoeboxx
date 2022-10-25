@@ -79,7 +79,7 @@ import {
          
           </Stack>
   
-          <Box
+          <Box 
             rounded={"lg"}
             bg={useColorModeValue("white", "gray.700")}
             boxShadow={"lg"}

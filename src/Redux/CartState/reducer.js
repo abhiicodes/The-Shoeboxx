@@ -1,5 +1,5 @@
 
-import { ADD_TO_CART, DELETE, QUANTITY } from './action';
+import { ADD_TO_CART, DELETE, QUANTITY, SET } from './action';
 
 const initCartState = {cart:[]}
 
@@ -18,7 +18,11 @@ export const cartReducer = (state=initCartState,{type,payload})=>{
 
             case DELETE:
                 return {...state,cart:state.cart.filter((el)=>el.id!==payload)}
-        default: return state
+       
+                case SET:
+                    return {...state,cart:payload}
+       
+                default: return state
            
     }
 }

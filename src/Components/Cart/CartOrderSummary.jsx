@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const OrderSummaryItem = (props) => {
   // console.log(props);
@@ -36,7 +37,7 @@ export const CartOrderSummary = () => {
   const cart = useSelector((store) => store.cartReducer.cart);
   const [total, setTotal] = useState(0);
   const [text, setText] = useState("");
-
+const token = useSelector((store)=>store.authReducer.token)
   useEffect(() => {
     let nt = 0;
     for (let i = 0; i < cart.length; i++) {
@@ -92,8 +93,18 @@ export const CartOrderSummary = () => {
         size="lg"
         fontSize="md"
         rightIcon={<FaArrowRight />}
+        onClick={()=>{
+          axios.post('http://localhost:8078/cart/set', {
+ items:cart
+},
+{
+  headers: {
+    authorization: 'Bearer ' + token
+  }
+}).then((res)=>console.log(res))
+        }}
       >
-        <Link to={"/"}>Checkout</Link>
+        <Link to={"#"}>Checkout</Link>
       </Button>
     </Stack>
   );

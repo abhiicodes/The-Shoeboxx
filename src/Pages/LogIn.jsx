@@ -113,7 +113,7 @@ export default function Login() {
 
                         // console.log(res);
                         
-                    dispatch({ type: LOGIN, payload: res.data.token })
+                    dispatch({ type: LOGIN, payload: {token:res.data.token,name:res.data.name} })
                     dispatch({ type: SIGNUP, payload: null })
                   setTimeout(() => {
                     navigate("/")

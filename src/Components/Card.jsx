@@ -122,7 +122,7 @@ function Card({ el }) {
           alt={`Picture of ${data.name}`}
           roundedTop="lg"
           onClick={() => {
-            navigate(`/products/${el.id}`);
+            navigate(`/products/${el._id}`);
           }}
         />
 
