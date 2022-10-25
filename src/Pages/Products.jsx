@@ -9,6 +9,7 @@ import store from './../Redux/store';
 import { Box } from '@mui/material';
 import ProductSidebar from '../Components/ProductSidebar';
 import CustomLoader from '../Components/CustomLoader';
+import  {instance}  from './../utils/axiosInstance';
 
 
 const Products = () => {
@@ -17,17 +18,24 @@ const Products = () => {
 const dispatch = useDispatch()
 const products = useSelector((store)=>store.productReducer.products)
 const [loading,setLoading] = useState(true)
+const token = useSelector((store) => store.authReducer.token);
+
 console.log(store.getState())
   useEffect(() => {
 
     setLoading(true)
-    axios
-      .get("http://localhost:3000/products")
+    axios.get('http://localhost:8078/categories/mobiles', {
+      headers: {
+        authorization: 'Bearer ' + token //the token is a variable which holds the token
+      }
+     })
       .then((res) => res.data)
       .then((items) => {
         console.log(items)
        dispatch(addProducts(items)) ;
        setLoading(false)
+      }).catch((err)=>{
+        console.log(err)
       });
   }, []);
 

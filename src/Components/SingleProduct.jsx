@@ -45,12 +45,15 @@ export default function SingleProduct() {
 const [loading,setLoading] = useState(false)
 
 const cart = useSelector((store)=>store.cartReducer.cart)
-
+const token = useSelector((store)=>store.authReducer.token)
   useEffect(() => {
 setLoading(true)
 
-    axios
-      .get(`http://localhost:3000/products/${id}`)
+axios.get(`http://localhost:8078/categories/mobiles/${id}`, {
+  headers: {
+    authorization: 'Bearer ' + token //the token is a variable which holds the token
+  }
+ })
       .then((res) => {
         for(let i = 0;i<cart.length;i++){
           if(cart[i].id===res.data.id){
