@@ -1,4 +1,4 @@
-import { Container, Grid, GridItem, HStack, VStack } from "@chakra-ui/react";
+import { Container, Grid, GridItem, HStack, VStack,Box } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { addProducts } from "../Redux/Products/actions";
 import Card from "./../Components/Card";
 import store from "./../Redux/store";
-import { Box } from "@mui/material";
+
 import ProductSidebar from "../Components/ProductSidebar";
 import CustomLoader from "../Components/CustomLoader";
 import { instance } from "./../utils/axiosInstance";

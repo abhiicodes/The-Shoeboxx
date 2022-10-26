@@ -77,7 +77,7 @@ const ProductSidebar = () => {
   };
 
   return (
-    <Box mb={800} pl={5}>
+    <Box mb={{lg:800,sm:10}} pl={5}>
       <VStack>
         <Box>
           <CheckboxGroup colorScheme="green">
