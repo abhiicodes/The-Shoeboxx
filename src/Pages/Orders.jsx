@@ -14,11 +14,41 @@ import {
   Stack,
   HStack,
   VStack,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
+import OrderItem from "../Components/OrderItem";
+
 import { CheckIcon } from "@chakra-ui/icons";
 const Orders = () => {
   const token = useSelector((store) => store.authReducer.token);
-const [data,setData ]= useState(["a","b","c"])
+  const [data, setData] = useState([]);
+  const [cancel, setCancel] = useState(false);
+  const cancelOrder = (id) => {
+    axios
+      .patch(
+        `http://localhost:8078/order/cancel/${id}`,
+        {},
+        {
+          headers: {
+            authorization: "Bearer " + token, //the token is a variable which holds the token
+          },
+        }
+      )
+      .then((res) => res.data)
+      .then((items) => {
+        setData(items);
+        setCancel(true);
+
+        setTimeout(() => {
+          setCancel(false);
+        }, 3000);
+      })
+      .catch((err) => {});
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:8078/order", {
@@ -28,28 +58,24 @@ const [data,setData ]= useState(["a","b","c"])
       })
       .then((res) => res.data)
       .then((items) => {
-        console.log(items);
-  
+        setData(items);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   }, []);
-  
 
+  return (
+    <Box p={4} mb={200}>
+      {cancel && (
+        <Alert status="success">
+          <AlertIcon />
+          Order cancelled successfully
+        </Alert>
+      )}
 
-
-return (
-    <Box p={4}>
       <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
-        <Heading fontSize={"3xl"}>This is the headline</Heading>
-        <Text color={"gray.600"} fontSize={"xl"}>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua.
-        </Text>
+        <Heading fontSize={"3xl"}>Your Orders</Heading>
       </Stack>
-
+      {/* 
       <Container maxW={"6xl"} mt={10}>
         <SimpleGrid columns={{ base: 1, md: 1, lg: 1}} spacing={10}>
           {data.map((el) => (
@@ -58,11 +84,26 @@ return (
               <VStack align={"start"}>
                 <Text fontWeight={600}>{el}</Text>
                 <Text color={"gray.600"}>{el.text}</Text>
+              <BoxItem el={el}/>
+              
+              
               </VStack>
             </HStack>
           ))}
         </SimpleGrid>
-      </Container>
+      </Container> */}
+      {data.map((el) => {
+        return (
+          <OrderItem
+            key={el?._id}
+            id={el?._id}
+            title={el?.items[0].product_id.s_desc}
+            image={el?.items[0].product_id.image}
+            len={el?.items.length - 1}
+            cancelOrder={cancelOrder}
+          />
+        );
+      })}
     </Box>
   );
 };

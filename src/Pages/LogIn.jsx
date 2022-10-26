@@ -6,7 +6,6 @@ import {
   Input,
   Checkbox,
   Stack,
- 
   Button,
   Heading,
   Text,
@@ -21,28 +20,26 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { LOGIN, SIGNUP } from "./../Redux/AuthState/actions";
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const initVal = { email: "", password: "" };
 
 export default function Login() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [fstate, setFstate] = useState(initVal);
-  // console.log(fstate)
+  //
   const [success, setSuccess] = useState(false);
   const [spinner, setSpinner] = useState(false);
 
   const [fail, setFail] = useState(false);
   const [failmsg, setFailmsg] = useState("");
 
-
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // console.log(name, value);
+    //
     setFstate({ ...fstate, [name]: value });
   };
 
@@ -92,7 +89,9 @@ export default function Login() {
                 justify={"space-between"}
               >
                 <Checkbox>Remember me</Checkbox>
-                <Link to={"/forgotpassword"} color={"blue.400"}>Forgot password?</Link>
+                <Link to={"/forgotpassword"} color={"blue.400"}>
+                  Forgot password?
+                </Link>
               </Stack>
               <Button
                 bg={"gray.900"}
@@ -105,48 +104,45 @@ export default function Login() {
 
                   axios
                     .post("http://localhost:8078/user/login", fstate)
-                    .then((res) =>
-                      {
-                        setFail(false);
+                    .then((res) => {
+                      setFail(false);
                       setSuccess(true);
                       setSpinner(false);
 
-                        // console.log(res);
-                        
-                    dispatch({ type: LOGIN, payload: {token:res.data.token,name:res.data.name} })
-                    dispatch({ type: SIGNUP, payload: null })
-                  setTimeout(() => {
-                    navigate("/")
-                  },1500);
-                  
-                  
-                  }
-                    )
+                      //
+
+                      dispatch({
+                        type: LOGIN,
+                        payload: { token: res.data.token, name: res.data.name },
+                      });
+                      dispatch({ type: SIGNUP, payload: null });
+                      setTimeout(() => {
+                        navigate("/");
+                      }, 1500);
+                    })
                     .catch((err) => {
-                      setFail(true)
+                      setFail(true);
                       setSuccess(false);
                       setSpinner(false);
                     });
                 }}
               >
-           {(spinner && <Spinner color="white.500" />) || "Sign In"}
+                {(spinner && <Spinner color="white.500" />) || "Sign In"}
               </Button>
 
               {fail && (
-              <Alert status="error">
-                <AlertIcon />
-                Incorrect email or password
-              </Alert>
-            )}
+                <Alert status="error">
+                  <AlertIcon />
+                  Incorrect email or password
+                </Alert>
+              )}
 
-            {success && (
-              <Alert status="success">
-                <AlertIcon />
-                Sign in successful
-              </Alert>
-            )}
-
-
+              {success && (
+                <Alert status="success">
+                  <AlertIcon />
+                  Sign in successful
+                </Alert>
+              )}
             </Stack>
           </Stack>
         </Box>

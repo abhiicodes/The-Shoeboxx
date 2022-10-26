@@ -177,8 +177,8 @@ quantity:1
   headers: {
     authorization: 'Bearer ' + token
   }
-}).then((res)=>console.log("added",res))
-navigate("/cart")
+}).then((res)=>
+navigate("/cart"))
               }}
             >
              {(bdisabled && "Item already in the cart") || "Add to cart"}

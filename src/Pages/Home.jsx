@@ -2,48 +2,41 @@ import React, { useEffect, useState } from "react";
 import { Box, Image, GridItem, Grid } from "@chakra-ui/react";
 import CaptionCarousel from "../Components/Carousel";
 import CustomLoader from "../Components/CustomLoader";
-import { useSelector, useDispatch } from 'react-redux';
-import store from './../Redux/store';
-import { useNavigate } from 'react-router-dom';
-import  axios  from 'axios';
+import { useSelector, useDispatch } from "react-redux";
+import store from "./../Redux/store";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { SET } from "../Redux/CartState/action";
 
 const Home = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [loading,setLoading] = useState(true)
-const token = useSelector((store)=>store.authReducer.token)
-useEffect(()=>{
-  if(!token) return navigate("/signup")
-setLoading(false)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const token = useSelector((store) => store.authReducer.token);
+  useEffect(() => {
+    if (!token) return navigate("/signup");
+    setLoading(false);
+  }, []);
 
-},[])
-
-useEffect(()=>{
-  axios.get('http://localhost:8078/cart', {
-    headers: {
-      authorization: 'Bearer ' + token //the token is a variable which holds the token
-    }
-   })
-    .then((res) => res.data)
-    .then((items) => {
-      console.log(items)
-      let upCart = items.items.map((el)=>{
-        console.log(el)
-        return {...el.product_id,quantity:el.quantity,size:el.size}
+  useEffect(() => {
+    axios
+      .get("http://localhost:8078/cart", {
+        headers: {
+          authorization: "Bearer " + token, //the token is a variable which holds the token
+        },
       })
-      console.log(upCart)
-      dispatch({type:SET,payload:upCart})
-   
-    }).catch((err)=>{
-      console.log(err)
-    });
-},[])
+      .then((res) => res.data)
+      .then((items) => {
+        let upCart = items.items.map((el) => {
+          return { ...el.product_id, quantity: el.quantity, size: el.size };
+        });
 
+        dispatch({ type: SET, payload: upCart });
+      })
+      .catch((err) => {});
+  }, []);
 
-if(loading) return <CustomLoader/>
-
-
+  if (loading) return <CustomLoader />;
 
   return (
     <Box>
@@ -67,7 +60,7 @@ if(loading) return <CustomLoader/>
         }
       />
 
-      <Grid templateColumns="repeat(2, 1fr)" gap={6} mt={10} mb={700} >
+      <Grid templateColumns="repeat(2, 1fr)" gap={6} mt={10} mb={700}>
         <GridItem w="100%" h="500">
           <Image
             w={"full"}
@@ -79,7 +72,6 @@ if(loading) return <CustomLoader/>
         <GridItem w="100%" h="100">
           <Image
             w={"full"}
-      
             src={
               "https://images.puma.com/image/upload/q_auto,f_auto,w_1440/regional/~regional~IND~others~KOP~Sep+2022~Football~New_Football+CarouselsBVB.jpg/fmt/jpg/fmt/png"
             }
@@ -103,8 +95,12 @@ if(loading) return <CustomLoader/>
           />
         </GridItem>
       </Grid>
-      <Image w={"full"} src={"https://images.puma.com/image/upload/q_auto,f_auto,w_1440/regional/~regional~IND~others~KOP~Sep+2022~Sep~September-edit-desktop.jpg/fmt/jpg/fmt/png"}/>
-
+      <Image
+        w={"full"}
+        src={
+          "https://images.puma.com/image/upload/q_auto,f_auto,w_1440/regional/~regional~IND~others~KOP~Sep+2022~Sep~September-edit-desktop.jpg/fmt/jpg/fmt/png"
+        }
+      />
     </Box>
   );
 };

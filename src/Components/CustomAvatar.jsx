@@ -1,7 +1,7 @@
 import { Avatar, Box, HStack } from '@chakra-ui/react'
 import React from 'react'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const CustomAvatar = () => {
 
@@ -13,7 +13,7 @@ const CustomAvatar = () => {
   return (
    <HStack _hover={{cursor:"pointer"}}>
 
-         <Avatar size={"sm"} name={'a'} src='https://bit.ly/broken-link' />
+         <Link to={"/orders"}><Avatar size={"sm"} name={''} src='https://bit.ly/broken-link' /></Link>
          <Box onClick={()=>{
 navigate("/cart")
          }} >
