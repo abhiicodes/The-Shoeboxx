@@ -21,7 +21,7 @@ const ProductSidebar = () => {
   const sortBy = (e) => {
     if (e.target.checked == false) {
       return axios
-        .get("http://localhost:8078/categories/mobiles", {
+        .get("https://shoeebox-backend.herokuapp.com/categories/mobiles", {
           headers: {
             authorization: "Bearer " + token, //the token is a variable which holds the token
           },
@@ -43,7 +43,7 @@ const ProductSidebar = () => {
   const filterByBrand = (e) => {
     if (e.target.checked == false) {
       return axios
-        .get("http://localhost:8078/categories/mobiles", {
+        .get("https://shoeebox-backend.herokuapp.com/categories/mobiles", {
           headers: {
             authorization: "Bearer " + token, //the token is a variable which holds the token
           },
@@ -61,7 +61,7 @@ const ProductSidebar = () => {
   const filterByColor = (e) => {
     if (e.target.checked == false) {
       return axios
-        .get("http://localhost:8078/categories/mobiles", {
+        .get("https://shoeebox-backend.herokuapp.com/categories/mobiles", {
           headers: {
             authorization: "Bearer " + token, //the token is a variable which holds the token
           },
@@ -77,7 +77,7 @@ const ProductSidebar = () => {
   };
 
   return (
-    <Box mb={{lg:800,sm:10}} pl={5}>
+    <Box mb={{ lg: 800, sm: 10 }} pl={5}>
       <VStack>
         <Box>
           <CheckboxGroup colorScheme="green">

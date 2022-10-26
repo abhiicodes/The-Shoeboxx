@@ -22,16 +22,16 @@ import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../Redux/CartState/action";
 import { Rating } from "./Card";
-import store from './../Redux/store';
+import store from "./../Redux/store";
 import {
   Alert,
   AlertIcon,
   AlertTitle,
   AlertDescription,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
 import CustomLoader from "./CustomLoader";
 
 export default function SingleProduct() {
@@ -40,38 +40,35 @@ export default function SingleProduct() {
   const [size, setSize] = useState(0);
   const { id } = useParams();
   const [data, setData] = useState({});
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-const [loading,setLoading] = useState(false)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-const cart = useSelector((store)=>store.cartReducer.cart)
-const token = useSelector((store)=>store.authReducer.token)
+  const cart = useSelector((store) => store.cartReducer.cart);
+  const token = useSelector((store) => store.authReducer.token);
   useEffect(() => {
-    if(!token) return navigate("/signup")
-setLoading(true)
+    if (!token) return navigate("/signup");
+    setLoading(true);
 
-axios.get(`http://localhost:8078/categories/mobiles/${id}`, {
-  headers: {
-    authorization: 'Bearer ' + token //the token is a variable which holds the token
-  }
- })
+    axios
+      .get(`https://shoeebox-backend.herokuapp.com/categories/mobiles/${id}`, {
+        headers: {
+          authorization: "Bearer " + token, //the token is a variable which holds the token
+        },
+      })
       .then((res) => {
-        for(let i = 0;i<cart.length;i++){
-          if(cart[i].id===res.data.id){
-            setBdisabled(true)
+        for (let i = 0; i < cart.length; i++) {
+          if (cart[i].id === res.data.id) {
+            setBdisabled(true);
             break;
-          } 
+          }
         }
-        
-        
-        
-        setData(res.data)
-        setLoading(false)
-      
-      
+
+        setData(res.data);
+        setLoading(false);
       });
   }, []);
-  if(loading) return <CustomLoader/>
+  if (loading) return <CustomLoader />;
 
   return (
     <Container maxW={"7xl"}>
@@ -121,7 +118,7 @@ axios.get(`http://localhost:8078/categories/mobiles/${id}`, {
             <HStack>
               {data?.sizes?.map((el) => (
                 <Button
-                    disabled={size == el}
+                  disabled={size == el}
                   onClick={() => {
                     setSize(el);
                   }}
@@ -147,10 +144,9 @@ axios.get(`http://localhost:8078/categories/mobiles/${id}`, {
                 </Text>
               </VStack> */}
 
-<Box>
-<Rating rating={data.rating} numReviews={data.reviews} />
-
-</Box>
+            <Box>
+              <Rating rating={data.rating} numReviews={data.reviews} />
+            </Box>
             <Button
               rounded={"none"}
               w={"full"}
@@ -165,23 +161,27 @@ axios.get(`http://localhost:8078/categories/mobiles/${id}`, {
                 boxShadow: "lg",
               }}
               disabled={bdisabled}
-              onClick={()=>{
-                if(size===0) return alert("Please select size")
- dispatch(addItemToCart({...data,size:size}))
-axios.post('http://localhost:8078/cart/add', {
-product_id:data._id,
-size:size,
-quantity:1
-},
-{
-  headers: {
-    authorization: 'Bearer ' + token
-  }
-}).then((res)=>
-navigate("/cart"))
+              onClick={() => {
+                if (size === 0) return alert("Please select size");
+                dispatch(addItemToCart({ ...data, size: size }));
+                axios
+                  .post(
+                    "https://shoeebox-backend.herokuapp.com/cart/add",
+                    {
+                      product_id: data._id,
+                      size: size,
+                      quantity: 1,
+                    },
+                    {
+                      headers: {
+                        authorization: "Bearer " + token,
+                      },
+                    }
+                  )
+                  .then((res) => navigate("/cart"));
               }}
             >
-             {(bdisabled && "Item already in the cart") || "Add to cart"}
+              {(bdisabled && "Item already in the cart") || "Add to cart"}
             </Button>
 
             <Stack

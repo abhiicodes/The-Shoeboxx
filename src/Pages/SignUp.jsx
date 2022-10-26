@@ -28,10 +28,10 @@ import { useDispatch } from "react-redux";
 import { SIGNUP } from "../Redux/AuthState/actions";
 import { useSelector } from "react-redux";
 const initState = {
-  firstName: "a",
-  lastName: "a",
-  email: "a@a.com",
-  password: "1",
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
 };
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
@@ -149,7 +149,10 @@ export default function Signup() {
                   setSpinner(true);
 
                   axios
-                    .post("http://localhost:8078/user/signup", formState)
+                    .post(
+                      "https://shoeebox-backend.herokuapp.com/user/signup",
+                      formState
+                    )
                     .then((res) => {
                       setFail(false);
                       setSuccess(true);
@@ -222,7 +225,7 @@ export default function Signup() {
                       setOtpfail(false);
                       setOtpSuccess(false);
                       setOtpspinner(true);
-                      let url = `http://localhost:8078/user/verify/${user_id}`;
+                      let url = `https://shoeebox-backend.herokuapp.com/user/verify/${user_id}`;
                       //
                       axios
                         .post(url, { otp: otpval })

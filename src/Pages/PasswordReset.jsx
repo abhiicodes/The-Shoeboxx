@@ -123,7 +123,7 @@ export default function Signup() {
 
                   axios
                     .post(
-                      `http://localhost:8078/user/updatepassword/${user_id}`,
+                      `https://shoeebox-backend.herokuapp.com/user/updatepassword/${user_id}`,
                       { password: formState.password }
                     )
                     .then((res) => {

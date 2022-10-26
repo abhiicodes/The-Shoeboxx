@@ -103,7 +103,7 @@ export default function Signup() {
 
                   axios
                     .get(
-                      `http://localhost:8078/user/forgotpassword?email=${formState.email}`
+                      `https://shoeebox-backend.herokuapp.com/user/forgotpassword?email=${formState.email}`
                     )
                     .then((res) => {
                       setFail(false);
@@ -177,7 +177,7 @@ export default function Signup() {
                       setOtpfail(false);
                       setOtpSuccess(false);
                       setOtpspinner(true);
-                      let url = `http://localhost:8078/user/verify/${user_id}`;
+                      let url = `https://shoeebox-backend.herokuapp.com/user/verify/${user_id}`;
                       //
                       axios
                         .post(url, { otp: otpval })

@@ -1,4 +1,12 @@
-import { Container, Grid, GridItem, HStack, VStack,Box } from "@chakra-ui/react";
+import {
+  Container,
+  Grid,
+  GridItem,
+  HStack,
+  VStack,
+  Flex,
+  Box,
+} from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +31,7 @@ const Products = () => {
     if (!token) return navigate("/signup");
     setLoading(true);
     axios
-      .get("http://localhost:8078/categories/mobiles", {
+      .get("https://shoeebox-backend.herokuapp.com/categories/mobiles", {
         headers: {
           authorization: "Bearer " + token, //the token is a variable which holds the token
         },
@@ -51,7 +59,7 @@ const Products = () => {
 
     //       ))}
 
-    <HStack>
+    <Flex direction={{ lg: "row", sm: "column" }}>
       <Box>
         <ProductSidebar />
       </Box>
@@ -70,7 +78,7 @@ const Products = () => {
           ))}
         </Grid>
       </Box>
-    </HStack>
+    </Flex>
   );
 };
 

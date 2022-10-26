@@ -20,7 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8078/cart", {
+      .get("https://shoeebox-backend.herokuapp.com/cart", {
         headers: {
           authorization: "Bearer " + token, //the token is a variable which holds the token
         },
