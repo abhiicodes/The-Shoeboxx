@@ -60,7 +60,7 @@ const Home = () => {
         }
       />
 
-      <Grid templateColumns="repeat(2, 1fr)" gap={6} mt={10} mb={700}>
+      <Grid templateColumns="repeat(2, 1fr)" gap={6} mt={10} mb={{lg:800,base:200}}>
         <GridItem w="100%" h="500">
           <Image
             w={"full"}
