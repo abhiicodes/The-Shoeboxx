@@ -20,7 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("https://shoeebox-backend.herokuapp.com/cart", {
+      .get("https://web-production-ea49.up.railway.app/cart", {
         headers: {
           authorization: "Bearer " + token, //the token is a variable which holds the token
         },
@@ -60,7 +60,12 @@ const Home = () => {
         }
       />
 
-      <Grid templateColumns="repeat(2, 1fr)" gap={6} mt={10} mb={{lg:800,base:200}}>
+      <Grid
+        templateColumns="repeat(2, 1fr)"
+        gap={6}
+        mt={10}
+        mb={{ lg: 800, base: 200 }}
+      >
         <GridItem w="100%" h="500">
           <Image
             w={"full"}

@@ -29,7 +29,7 @@ const Orders = () => {
   const cancelOrder = (id) => {
     axios
       .patch(
-        `https://shoeebox-backend.herokuapp.com/order/cancel/${id}`,
+        `https://web-production-ea49.up.railway.app/order/cancel/${id}`,
         {},
         {
           headers: {
@@ -51,7 +51,7 @@ const Orders = () => {
 
   useEffect(() => {
     axios
-      .get("https://shoeebox-backend.herokuapp.com/order", {
+      .get("https://web-production-ea49.up.railway.app/order", {
         headers: {
           authorization: "Bearer " + token, //the token is a variable which holds the token
         },

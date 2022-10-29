@@ -40,7 +40,7 @@ const Cart = () => {
 
   useEffect(() => {
     axios.post(
-      "https://shoeebox-backend.herokuapp.com/cart/set",
+      "https://web-production-ea49.up.railway.app/cart/set",
       {
         items: cart,
       },
@@ -54,7 +54,7 @@ const Cart = () => {
 
   useEffect(() => {
     axios
-      .get("https://shoeebox-backend.herokuapp.com/cart", {
+      .get("https://web-production-ea49.up.railway.app/cart", {
         headers: {
           authorization: "Bearer " + token, //the token is a variable which holds the token
         },

@@ -150,7 +150,7 @@ export default function Signup() {
 
                   axios
                     .post(
-                      "https://shoeebox-backend.herokuapp.com/user/signup",
+                      "https://web-production-ea49.up.railway.app/user/signup",
                       formState
                     )
                     .then((res) => {
@@ -225,7 +225,7 @@ export default function Signup() {
                       setOtpfail(false);
                       setOtpSuccess(false);
                       setOtpspinner(true);
-                      let url = `https://shoeebox-backend.herokuapp.com/user/verify/${user_id}`;
+                      let url = `https://web-production-ea49.up.railway.app/user/verify/${user_id}`;
                       //
                       axios
                         .post(url, { otp: otpval })

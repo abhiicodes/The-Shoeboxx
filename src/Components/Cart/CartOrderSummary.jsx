@@ -53,12 +53,12 @@ export const CartOrderSummary = () => {
       handler: async (response) => {
         try {
           const verifyUrl =
-            "https://shoeebox-backend.herokuapp.com/api/payment/verify";
+            "https://web-production-ea49.up.railway.app/api/payment/verify";
           const { data } = await axios.post(verifyUrl, response);
 
           const order = await axios
             .post(
-              "https://shoeebox-backend.herokuapp.com/order",
+              "https://web-production-ea49.up.railway.app/order",
               {},
               {
                 headers: {
@@ -80,7 +80,7 @@ export const CartOrderSummary = () => {
   const handlePayment = async () => {
     try {
       const orderUrl =
-        "https://shoeebox-backend.herokuapp.com/api/payment/orders";
+        "https://web-production-ea49.up.railway.app/api/payment/orders";
       const { data } = await axios.post(orderUrl, { price: 100 });
 
       initPayment(data.data);
