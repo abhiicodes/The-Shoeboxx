@@ -1,10 +1,7 @@
-# FabIndia-Clone
+# the ShoeBox
 
 # Welcome :wave:
 
-### About Fab Indiastore:
-
->Fabindia is an Indian chain store retailing garments, furnishings, fabrics and ethnic products handmade by craftspeople across rural India.
 
 # About this project ⏬
 
