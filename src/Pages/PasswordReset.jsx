@@ -123,7 +123,7 @@ export default function Signup() {
 
                   axios
                     .post(
-                      `https://web-production-ea49.up.railway.app/user/updatepassword/${user_id}`,
+                      `https://the-shoe-box.onrender.com/user/updatepassword/${user_id}`,
                       { password: formState.password }
                     )
                     .then((res) => {

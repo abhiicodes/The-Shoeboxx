@@ -21,7 +21,7 @@ const ProductSidebar = () => {
   const sortBy = (e) => {
     if (e.target.checked == false) {
       return axios
-        .get("https://web-production-ea49.up.railway.app/categories/mobiles", {
+        .get("https://the-shoe-box.onrender.com/categories/mobiles", {
           headers: {
             authorization: "Bearer " + token, //the token is a variable which holds the token
           },
@@ -43,7 +43,7 @@ const ProductSidebar = () => {
   const filterByBrand = (e) => {
     if (e.target.checked == false) {
       return axios
-        .get("https://web-production-ea49.up.railway.app/categories/mobiles", {
+        .get("https://the-shoe-box.onrender.com/categories/mobiles", {
           headers: {
             authorization: "Bearer " + token, //the token is a variable which holds the token
           },
@@ -61,7 +61,7 @@ const ProductSidebar = () => {
   const filterByColor = (e) => {
     if (e.target.checked == false) {
       return axios
-        .get("https://web-production-ea49.up.railway.app/categories/mobiles", {
+        .get("https://the-shoe-box.onrender.com/categories/mobiles", {
           headers: {
             authorization: "Bearer " + token, //the token is a variable which holds the token
           },

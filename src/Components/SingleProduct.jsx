@@ -51,14 +51,11 @@ export default function SingleProduct() {
     setLoading(true);
 
     axios
-      .get(
-        `https://web-production-ea49.up.railway.app/categories/mobiles/${id}`,
-        {
-          headers: {
-            authorization: "Bearer " + token, //the token is a variable which holds the token
-          },
-        }
-      )
+      .get(`https://the-shoe-box.onrender.com/categories/mobiles/${id}`, {
+        headers: {
+          authorization: "Bearer " + token, //the token is a variable which holds the token
+        },
+      })
       .then((res) => {
         for (let i = 0; i < cart.length; i++) {
           if (cart[i].id === res.data.id) {
@@ -169,7 +166,7 @@ export default function SingleProduct() {
                 dispatch(addItemToCart({ ...data, size: size }));
                 axios
                   .post(
-                    "https://web-production-ea49.up.railway.app/cart/add",
+                    "https://the-shoe-box.onrender.com/cart/add",
                     {
                       product_id: data._id,
                       size: size,

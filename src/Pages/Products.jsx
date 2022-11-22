@@ -31,7 +31,7 @@ const Products = () => {
     if (!token) return navigate("/signup");
     setLoading(true);
     axios
-      .get("https://web-production-ea49.up.railway.app/categories/mobiles", {
+      .get("https://the-shoe-box.onrender.com/categories/mobiles", {
         headers: {
           authorization: "Bearer " + token, //the token is a variable which holds the token
         },

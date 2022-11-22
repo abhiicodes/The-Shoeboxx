@@ -29,7 +29,7 @@ const Orders = () => {
   const cancelOrder = (id) => {
     axios
       .patch(
-        `https://web-production-ea49.up.railway.app/order/cancel/${id}`,
+        `https://the-shoe-box.onrender.com/order/cancel/${id}`,
         {},
         {
           headers: {
@@ -51,7 +51,7 @@ const Orders = () => {
 
   useEffect(() => {
     axios
-      .get("https://web-production-ea49.up.railway.app/order", {
+      .get("https://the-shoe-box.onrender.com/order", {
         headers: {
           authorization: "Bearer " + token, //the token is a variable which holds the token
         },

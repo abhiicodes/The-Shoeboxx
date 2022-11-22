@@ -53,12 +53,12 @@ export const CartOrderSummary = () => {
       handler: async (response) => {
         try {
           const verifyUrl =
-            "https://web-production-ea49.up.railway.app/api/payment/verify";
+            "https://the-shoe-box.onrender.com/api/payment/verify";
           const { data } = await axios.post(verifyUrl, response);
 
           const order = await axios
             .post(
-              "https://web-production-ea49.up.railway.app/order",
+              "https://the-shoe-box.onrender.com/order",
               {},
               {
                 headers: {
@@ -79,8 +79,7 @@ export const CartOrderSummary = () => {
 
   const handlePayment = async () => {
     try {
-      const orderUrl =
-        "https://web-production-ea49.up.railway.app/api/payment/orders";
+      const orderUrl = "https://the-shoe-box.onrender.com/api/payment/orders";
       const { data } = await axios.post(orderUrl, { price: 100 });
 
       initPayment(data.data);

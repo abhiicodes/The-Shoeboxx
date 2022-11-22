@@ -103,7 +103,7 @@ export default function Signup() {
 
                   axios
                     .get(
-                      `https://web-production-ea49.up.railway.app/user/forgotpassword?email=${formState.email}`
+                      `https://the-shoe-box.onrender.com/user/forgotpassword?email=${formState.email}`
                     )
                     .then((res) => {
                       setFail(false);
@@ -177,7 +177,7 @@ export default function Signup() {
                       setOtpfail(false);
                       setOtpSuccess(false);
                       setOtpspinner(true);
-                      let url = `https://web-production-ea49.up.railway.app/user/verify/${user_id}`;
+                      let url = `https://the-shoe-box.onrender.com/user/verify/${user_id}`;
                       //
                       axios
                         .post(url, { otp: otpval })
